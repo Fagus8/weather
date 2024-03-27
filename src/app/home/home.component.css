@@ -1,0 +1,205 @@
+
+.container {
+
+    
+    
+   
+    top: 0;
+    left: 0;
+}
+
+.light-mode {
+    background-image: linear-gradient(#aed7f0, #ffffff);
+    background-color: #aed7f0;
+    color: black;
+}
+.dark-mode {
+    background-color: #717171;
+}
+.mode {
+   
+}
+p {
+    color: red;
+}
+.bt {
+    width: 100px;
+    height: 30px;
+    padding: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+ 
+}
+
+
+
+
+
+.current {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: white;
+    height: 150px;
+      padding: 20px;
+}
+.svg-time,.svg-sun {
+    margin-right: 10px;
+    margin-bottom:6px ;
+}
+.m {
+ 
+    height: 50px;
+}
+
+
+
+
+
+
+.sc {
+    width: 500px;
+}
+
+input[type=search] {
+    width: 130px;
+    -webkit-transition: width 0.5s linear;
+    transition: width 0.5s linear;
+    border: 1px solid #aed7f0; /* Set border color */
+}
+.someclass {
+  
+    font-size: 0;
+
+}
+input {
+    border-radius: 10px;
+    height: 50px;
+    border: 1px solid #aed7f0; /* Set border color */
+    box-sizing: border-box;
+    color:#58cff0 ;
+}
+.b {
+    height: 50px;
+    box-sizing: border-box;
+    height: 50px;
+    border: 1px solid #aed7f0;
+    background-color: white;
+    width: 150px;
+    border-radius: 10px;
+    color: #58cff0;
+}
+
+  
+  input[type=search]:focus {
+    width: 70%;
+
+outline: #31e3e9;;
+  }
+  input::placeholder {
+    color: #58cff0;
+    opacity: 1; /* Firefox */
+  }
+  .first:hover {
+    cursor: pointer;
+    background-color: #f5f0f034;
+  }
+  
+
+   .first {
+   width: 100%;
+   }
+ 
+
+   .min{
+    margin-left: 70px;
+   }
+   .first {
+    width: 100%;
+   }
+
+
+body {
+    width: 100%;
+}
+
+
+img {
+  box-sizing: border-box;
+width: 50px;
+height: 50px;
+}
+
+
+tr {
+    display: flex;
+    width: 100%;
+    display: flex;
+    border :1px solid gray
+    
+}
+th {
+    border-bottom: 1px solid rgb(237, 235, 235);
+} 
+
+.times {
+    display: flex;
+
+  background-color: #31e3e9;
+}
+.tB {
+    list-style-type:none;
+    border:1px solid gray; 
+    display: flex;
+
+}
+.table {
+  border:1px solid gray; 
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+}
+li {
+    border:1px solid gray; 
+}
+
+
+.hours {
+  height: 50px;
+display: flex;
+}
+td {
+    width: 150px;
+
+  margin-bottom: 60px;
+}
+.right {
+    display: flex;
+    height: 25px;
+   max-width: 100%;
+}
+.left {
+    width: 150px;
+    background-color: beige;
+}
+.bottom {
+    display: flex;
+
+ 
+
+
+}
+.r1 {
+    height: 70px;
+}
+.r1:hover  {
+    cursor: pointer;
+    background-color: rebeccapurple;
+}
+
+html {
+    width: 100%;
+}

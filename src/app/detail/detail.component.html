@@ -1,0 +1,525 @@
+<div class="containerr">
+
+
+  <table class="table d-flex  ">
+
+      
+    
+   
+     
+       
+      <tr class = "d-flex flex-column ">
+        <th >Time</th>
+        <ng-container *ngFor="let g of newObjData">
+          <td *ngIf="g.dt_txt.includes('0:00:00')" >0:00:00</td>
+          </ng-container>
+          <ng-container *ngFor="let g of newObjData">
+            <td *ngIf="g.dt_txt.includes('3:00:00')" >3:00:00</td>
+            </ng-container>
+            <ng-container *ngFor="let g of newObjData">
+              <td *ngIf="g.dt_txt.includes('6:00:00')" >6:00:00</td>
+              </ng-container>
+              <ng-container *ngFor="let g of newObjData">
+                <td *ngIf="g.dt_txt.includes('9:00:00')" >9:00:00</td>
+                </ng-container>
+                <ng-container *ngFor="let g of newObjData">
+                  <td *ngIf="g.dt_txt.includes('12:00:00')" >12:00:00</td>
+                  </ng-container>
+                  <ng-container *ngFor="let g of newObjData">
+                    <td *ngIf="g.dt_txt.includes('15:00:00')" >15:00:00</td>
+                    </ng-container>
+                    <ng-container *ngFor="let g of newObjData">
+                      <td *ngIf="g.dt_txt.includes('18:00:00')" >18:00:00</td>
+                      </ng-container>
+                      <ng-container *ngFor="let g of newObjData">
+                        <td *ngIf="g.dt_txt.includes('21:00:00')" >21:00:00</td>
+                        </ng-container>
+      </tr>
+
+   
+      <tr class="d-flex flex-column " >
+        <th >Time</th>
+        <ng-container *ngFor="let g of newObjData">
+         <td class="1" *ngIf=" g.dt_txt.includes('0:00:00')" >
+          <img   [src]="'http://openweathermap.org/img/wn/' + g.weather[0].icon + '.png'" alt="Weather Icon">
+        </td>  
+      </ng-container>
+      <ng-container *ngFor="let g of newObjData">
+        <td class="1" *ngIf=" g.dt_txt.includes('3:00:00')" >
+         <img   [src]="'http://openweathermap.org/img/wn/' + g.weather[0].icon + '.png'" alt="Weather Icon">
+       </td>  
+     </ng-container>
+     <ng-container *ngFor="let g of newObjData">
+      <td class="1" *ngIf=" g.dt_txt.includes('6:00:00')" >
+       <img   [src]="'http://openweathermap.org/img/wn/' + g.weather[0].icon + '.png'" alt="Weather Icon">
+     </td>  
+   </ng-container>
+   <ng-container *ngFor="let g of newObjData">
+    <td class="1" *ngIf=" g.dt_txt.includes('9:00:00')" >
+     <img   [src]="'http://openweathermap.org/img/wn/' + g.weather[0].icon + '.png'" alt="Weather Icon">
+   </td>  
+ </ng-container>
+      <ng-container *ngFor="let g of newObjData">
+        <td class="1" *ngIf=" g.dt_txt.includes('12:00:00')" >
+         <img   [src]="'http://openweathermap.org/img/wn/' + g.weather[0].icon + '.png'" alt="Weather Icon">
+       </td>  
+     </ng-container>
+     <ng-container *ngFor="let g of newObjData">
+      <td class="1" *ngIf=" g.dt_txt.includes('15:00:00')" >
+       <img   [src]="'http://openweathermap.org/img/wn/' + g.weather[0].icon + '.png'" alt="Weather Icon">
+     </td>  
+   </ng-container>
+   <ng-container *ngFor="let g of newObjData">
+    <td class="1" *ngIf=" g.dt_txt.includes('18:00:00')" >
+     <img   [src]="'http://openweathermap.org/img/wn/' + g.weather[0].icon + '.png'" alt="Weather Icon">
+   </td>  
+ </ng-container>
+ <ng-container *ngFor="let g of newObjData">
+  <td class="1" *ngIf=" g.dt_txt.includes('21:00:00')" >
+   <img   [src]="'http://openweathermap.org/img/wn/' + g.weather[0].icon + '.png'" alt="Weather Icon">
+ </td>  
+</ng-container>
+                    
+               
+      <tr class="d-flex flex-column">
+        <th>temp</th>
+        <ng-container *ngFor="let g of newObjData">
+          <td class="1" *ngIf=" g.dt_txt.includes('0:00:00')" >
+          {{g.main.temp}}
+         </td>  
+        </ng-container>
+        <ng-container *ngFor="let g of newObjData">
+          <td class="1" *ngIf=" g.dt_txt.includes('3:00:00')" >
+          {{g.main.temp}}
+         </td>  
+        </ng-container>
+        <ng-container *ngFor="let g of newObjData">
+          <td class="1" *ngIf=" g.dt_txt.includes('6:00:00')" >
+          {{g.main.temp}}
+         </td>  
+        </ng-container>
+        <ng-container *ngFor="let g of newObjData">
+          <td class="1" *ngIf=" g.dt_txt.includes('9:00:00')" >
+          {{g.main.temp}}
+         </td>  
+        </ng-container>
+        <ng-container *ngFor="let g of newObjData">
+          <td class="1" *ngIf=" g.dt_txt.includes('12:00:00')" >
+          {{g.main.temp}}
+         </td>  
+        </ng-container>
+        <ng-container *ngFor="let g of newObjData">
+          <td class="1" *ngIf=" g.dt_txt.includes('15:00:00')" >
+          {{g.main.temp}}
+         </td>  
+        </ng-container>
+        <ng-container *ngFor="let g of newObjData">
+          <td class="1" *ngIf=" g.dt_txt.includes('18:00:00')" >
+          {{g.main.temp}}
+         </td>  
+        </ng-container>
+        <ng-container *ngFor="let g of newObjData">
+          <td class="1" *ngIf=" g.dt_txt.includes('21:00:00')" >
+          {{g.main.temp}}
+         </td>  
+        </ng-container>
+      
+      </tr>
+      <tr class="d-flex flex-column">
+        <th>Humidity</th>
+        <ng-container *ngFor="let g of newObjData">
+          <td class="1" *ngIf=" g.dt_txt.includes('0:00:00')" >
+          {{g.main.humidity}}
+         </td>  
+        </ng-container>
+        <ng-container *ngFor="let g of newObjData">
+          <td class="1" *ngIf=" g.dt_txt.includes('3:00:00')" >
+            {{g.main.humidity}}
+         </td>  
+        </ng-container>
+        <ng-container *ngFor="let g of newObjData">
+          <td class="1" *ngIf=" g.dt_txt.includes('6:00:00')" >
+            {{g.main.humidity}}
+         </td>  
+        </ng-container>
+        <ng-container *ngFor="let g of newObjData">
+          <td class="1" *ngIf=" g.dt_txt.includes('9:00:00')" >
+            {{g.main.humidity}}
+         </td>  
+        </ng-container>
+        <ng-container *ngFor="let g of newObjData">
+          <td class="1" *ngIf=" g.dt_txt.includes('12:00:00')" >
+            {{g.main.humidity}}
+         </td>  
+        </ng-container>
+        <ng-container *ngFor="let g of newObjData">
+          <td class="1" *ngIf=" g.dt_txt.includes('15:00:00')" >
+            {{g.main.humidity}}
+         </td>  
+        </ng-container>
+        <ng-container *ngFor="let g of newObjData">
+          <td class="1" *ngIf=" g.dt_txt.includes('18:00:00')" >
+            {{g.main.humidity}}
+         </td>  
+        </ng-container>
+        <ng-container *ngFor="let g of newObjData">
+          <td class="1" *ngIf=" g.dt_txt.includes('21:00:00')" >
+            {{g.main.humidity}}
+         </td>  
+        </ng-container>
+      
+      </tr>
+      <tr class="d-flex flex-column">
+        <th>Wind Speed</th>
+        <ng-container *ngFor="let g of newObjData">
+          <td class="1" *ngIf=" g.dt_txt.includes('0:00:00')" >
+          {{g.wind.speed}}
+         </td>  
+        </ng-container>
+        <ng-container *ngFor="let g of newObjData">
+          <td class="1" *ngIf=" g.dt_txt.includes('3:00:00')" >
+            {{g.wind.speed}}
+         </td>  
+        </ng-container>
+        <ng-container *ngFor="let g of newObjData">
+          <td class="1" *ngIf=" g.dt_txt.includes('6:00:00')" >
+            {{g.wind.speed}}
+         </td>  
+        </ng-container>
+        <ng-container *ngFor="let g of newObjData">
+          <td class="1" *ngIf=" g.dt_txt.includes('9:00:00')" >
+            {{g.wind.speed}}
+         </td>  
+        </ng-container>
+        <ng-container *ngFor="let g of newObjData">
+          <td class="1" *ngIf=" g.dt_txt.includes('12:00:00')" >
+            {{g.wind.speed}}
+         </td>  
+        </ng-container>
+        <ng-container *ngFor="let g of newObjData">
+          <td class="1" *ngIf=" g.dt_txt.includes('15:00:00')" >
+            {{g.wind.speed}}
+         </td>  
+        </ng-container>
+        <ng-container *ngFor="let g of newObjData">
+          <td class="1" *ngIf=" g.dt_txt.includes('18:00:00')" >
+            {{g.wind.speed}}
+         </td>  
+        </ng-container>
+        <ng-container *ngFor="let g of newObjData">
+          <td class="1" *ngIf=" g.dt_txt.includes('21:00:00')" >
+            {{g.wind.speed}}
+         </td>  
+        </ng-container>
+      
+      </tr>
+
+  </table>
+
+  <!-- <ul  class="list-group list-group-vertical">
+    <li class="list"></li>
+    
+    <ng-container *ngFor="let g of newObjData">
+    <li *ngIf="g.dt_txt.includes('3:00:00')" class="li">3:00:00</li>
+    </ng-container>
+    <ng-container *ngFor="let g of newObjData">
+      <li *ngIf="g.dt_txt.includes('6:00:00')" class="li">6:00:00</li>
+      </ng-container>
+      <ng-container *ngFor="let g of newObjData">
+        <li *ngIf="g.dt_txt.includes('9:00:00')" class="li">9:00:00</li>
+        </ng-container>
+        <ng-container *ngFor="let g of newObjData">
+          <li *ngIf="g.dt_txt.includes('12:00:00')" class="li">12:00:00</li>
+          </ng-container>
+          <ng-container *ngFor="let g of newObjData">
+            <li *ngIf="g.dt_txt.includes('15:00:00')" class="li">15:00:00</li>
+            </ng-container>
+            <ng-container *ngFor="let g of newObjData">
+              <li *ngIf="g.dt_txt.includes('18:00:00')" class="li">18:00:00</li>
+              </ng-container>
+              <ng-container *ngFor="let g of newObjData">
+                <li *ngIf="g.dt_txt.includes('21:00:00')" class="li">21:00:00</li>
+                </ng-container>
+  </ul>
+  <ul class="list-group list-group-vertical"> 
+    
+     <li  class="list">weather</li>
+     
+      <ng-container *ngFor="let g of newObjData">
+        <li  class="li">
+        <img *ngIf="g.dt_txt.includes('0:00:00')" [src]="'http://openweathermap.org/img/wn/' + g.weather[0].icon + '.png'" alt="Weather Icon">
+        </li> 
+      </ng-container>
+  
+      
+     
+        <ng-container *ngFor="let g of newObjData">
+          <li   class="li">
+          <img *ngIf="g.dt_txt.includes('3:00:00')" [src]="'http://openweathermap.org/img/wn/' + g.weather[0].icon + '.png'" alt="Weather Icon">
+        </li>
+        </ng-container>
+    
+      
+    
+      <ng-container *ngFor="let g of newObjData">
+        <li   class="li">
+        <img *ngIf="g.dt_txt.includes('6:00:00')" [src]="'http://openweathermap.org/img/wn/' + g.weather[0].icon + '.png'" alt="Weather Icon">
+       </li>
+      </ng-container>
+  
+       
+        <ng-container *ngFor="let g of newObjData">
+          <li   class="li">
+          <img *ngIf="g.dt_txt.includes('9:00:00')" [src]="'http://openweathermap.org/img/wn/' + g.weather[0].icon + '.png'" alt="Weather Icon">
+         </li>
+        </ng-container> -->
+    
+    <!-- <li   class="li">
+      <ng-container *ngFor="let g of newObjData">
+        <img *ngIf="g.dt_txt.includes('12:00:00')" [src]="'http://openweathermap.org/img/wn/' + g.weather[0].icon + '.png'" alt="Weather Icon">
+       
+      </ng-container>
+  </li>
+  <li   class="li">
+    <ng-container *ngFor="let g of newObjData">
+      <img *ngIf="g.dt_txt.includes('15:00:00')" [src]="'http://openweathermap.org/img/wn/' + g.weather[0].icon + '.png'" alt="Weather Icon">
+     
+    </ng-container>
+</li>
+<li  class="li ">
+  <ng-container *ngFor="let g of newObjData">
+    <img *ngIf="g.dt_txt.includes('18:00:00')" [src]="'http://openweathermap.org/img/wn/' + g.weather[0].icon + '.png'" alt="Weather Icon">
+
+  </ng-container>
+</li>
+<li class="li">
+  <ng-container *ngFor="let g of newObjData">
+    <img *ngIf="g.dt_txt.includes('21:00:00')" [src]="'http://openweathermap.org/img/wn/' + g.weather[0].icon + '.png'" alt="Weather Icon">
+   
+  </ng-container>
+</li> -->
+   <!-- </ul> 
+   <ul class="list-group list-group-vertical"> 
+    
+    <li  class="list">Temp</li>
+    <li *ngIf="newObjData.length == 8"  class="li">
+     <ng-container *ngFor="let g of newObjData">
+      <p *ngIf="g.dt_txt.includes('0:00:00')">{{g.main.temp}}</p>
+      
+     </ng-container>
+ 
+     </li> 
+     <li *ngIf="newObjData.length > 6"  class="li">
+      <ng-container *ngFor="let g of newObjData">
+        <p *ngIf="g.dt_txt.includes('3:00:00')">{{g.main.temp}}</p>
+        
+       </ng-container>
+   </li>
+     
+   <li *ngIf="newObjData.length > 5 "  class="li">
+    <ng-container *ngFor="let g of newObjData">
+      <p *ngIf="g.dt_txt.includes('6:00:00')">{{g.main.temp}}</p>
+      
+     </ng-container>
+ </li>
+      <li *ngIf="newObjData.length > 4"  class="li">
+        <ng-container *ngFor="let g of newObjData">
+          <p *ngIf="g.dt_txt.includes('9:00:00')">{{g.main.temp}}</p>
+          
+         </ng-container>
+   </li>
+   <li *ngIf="newObjData.length > 3"  class="li">
+    <ng-container *ngFor="let g of newObjData">
+      <p *ngIf="g.dt_txt.includes('12:00:00')">{{g.main.temp}}</p>
+      
+     </ng-container>
+ </li>
+ <li *ngIf="newObjData.length > 2"  class="li">
+  <ng-container *ngFor="let g of newObjData">
+    <p *ngIf="g.dt_txt.includes('15:00:00')">{{g.main.temp}}</p>
+
+   </ng-container>
+</li>
+<li *ngIf="newObjData.length > 1" class="li ">
+  <ng-container *ngFor="let g of newObjData">
+    <p *ngIf="g.dt_txt.includes('18:00:00')">{{g.main.temp}}</p>
+
+   </ng-container>
+</li>
+<li *ngIf="newObjData.length > 1" class="li ">
+  <ng-container *ngFor="let g of newObjData">
+    <p *ngIf="g.dt_txt.includes('21:00:00')">{{g.main.temp}}</p>
+
+   </ng-container>
+</li>
+  </ul> 
+  <ul class="list-group list-group-vertical"> 
+    
+    <li  class="list">Wind speed m/s</li>
+    <li *ngIf="newObjData.length == 8"  class="li">
+     <ng-container *ngFor="let g of newObjData">
+      <p *ngIf="g.dt_txt.includes('0:00:00')">{{g.wind.speed}}</p>
+
+     </ng-container>
+ 
+     </li> 
+     <li *ngIf="newObjData.length > 6"  class="li">
+      <ng-container *ngFor="let g of newObjData">
+        <p *ngIf="g.dt_txt.includes('3:00:00')">{{g.wind.speed}}</p>
+
+       </ng-container>
+   </li>
+     
+   <li *ngIf="newObjData.length > 5 "  class="li">
+    <ng-container *ngFor="let g of newObjData">
+      <p *ngIf="g.dt_txt.includes('6:00:00')">{{g.wind.speed}}</p>
+ 
+     </ng-container>
+ </li>
+      <li *ngIf="newObjData.length > 4"  class="li">
+        <ng-container *ngFor="let g of newObjData">
+          <p *ngIf="g.dt_txt.includes('9:00:00')">{{g.wind.speed}}</p>
+     
+         </ng-container>
+   </li>
+   <li *ngIf="newObjData.length > 3"  class="li">
+    <ng-container *ngFor="let g of newObjData">
+      <p *ngIf="g.dt_txt.includes('12:00:00')">{{g.wind.speed}}</p>
+
+     </ng-container>
+ </li>
+ <li *ngIf="newObjData.length > 2"  class="li">
+  <ng-container *ngFor="let g of newObjData">
+    <p *ngIf="g.dt_txt.includes('15:00:00')">{{g.wind.speed}}</p>
+
+   </ng-container>
+</li>
+<li *ngIf="newObjData.length > 1" class="li">
+  <ng-container *ngFor="let g of newObjData">
+    <p *ngIf="g.dt_txt.includes('18:00:00')">{{g.wind.speed}}</p>
+
+   </ng-container>
+</li>
+<li *ngIf="newObjData.length > 1" class="li ">
+  <ng-container *ngFor="let g of newObjData">
+    <p *ngIf="g.dt_txt.includes('21:00:00')">{{g.wind.speed}}</p>
+
+   </ng-container>
+</li>
+  </ul> 
+  <ul class="list-group list-group-vertical"> 
+    
+    <li  class="list">Temp</li>
+    <li *ngIf="newObjData.length == 8"  class="li">
+     <ng-container *ngFor="let g of newObjData">
+      <p *ngIf="g.dt_txt.includes('0:00:00')">{{g.main.temp}}</p>
+
+     </ng-container>
+ 
+     </li> 
+     <li *ngIf="newObjData.length > 6"  class="li">
+      <ng-container *ngFor="let g of newObjData">
+        <p *ngIf="g.dt_txt.includes('3:00:00')">{{g.main.temp}}</p>
+        <p *ngIf="g.dt_txt.includes('18:00:00')">{{g.main.temp}}</p>
+       </ng-container>
+   </li>
+     
+   <li *ngIf="newObjData.length > 5 "  class="li">
+    <ng-container *ngFor="let g of newObjData">
+      <p *ngIf="g.dt_txt.includes('6:00:00')">{{g.main.temp}}</p>
+
+     </ng-container>
+ </li>
+      <li *ngIf="newObjData.length > 4"  class="li">
+        <ng-container *ngFor="let g of newObjData">
+          <p *ngIf="g.dt_txt.includes('9:00:00')">{{g.main.temp}}</p>
+   x
+         </ng-container>
+   </li>
+   <li *ngIf="newObjData.length > 3"  class="li">
+    <ng-container *ngFor="let g of newObjData">
+      <p *ngIf="g.dt_txt.includes('12:00:00')">{{g.main.temp}}</p>
+
+     </ng-container>
+ </li>
+ <li *ngIf="newObjData.length > 2"  class="li">
+  <ng-container *ngFor="let g of newObjData">
+    <p *ngIf="g.dt_txt.includes('15:00:00')">{{g.main.temp}}</p>
+
+   </ng-container>
+</li>
+<li *ngIf="newObjData.length > 1" class="li ">
+  <ng-container *ngFor="let g of newObjData">
+    <p *ngIf="g.dt_txt.includes('18:00:00')">{{g.main.temp}}</p>
+  
+   </ng-container>
+</li>
+<li *ngIf="newObjData.length > 1" class="li ">
+  <ng-container *ngFor="let g of newObjData">
+    <p *ngIf="g.dt_txt.includes('21:00:00')">{{g.main.temp}}</p>
+  
+   </ng-container>
+</li>
+  </ul> 
+  <ul class="list-group list-group-vertical"> 
+    
+    <li  class="list"> feels like</li>
+    <li *ngIf="newObjData.length == 8"  class="li">
+     <ng-container *ngFor="let g of newObjData">
+      <p *ngIf="g.dt_txt.includes('0:00:00')">{{g.main.feels_like}}</p>
+     
+     </ng-container>
+ 
+     </li> 
+     <li *ngIf="newObjData.length > 6"  class="li">
+      <ng-container *ngFor="let g of newObjData">
+        <p *ngIf="g.dt_txt.includes('3:00:00')">{{g.main.feels_like}}</p>
+     
+       </ng-container>
+   </li>
+     
+   <li *ngIf="newObjData.length > 5 "  class="li">
+    <ng-container *ngFor="let g of newObjData">
+      <p *ngIf="g.dt_txt.includes('6:00:00')">{{g.main.feels_like}}</p>
+     
+
+     </ng-container>
+ </li>
+      <li *ngIf="newObjData.length > 4"  class="li">
+        <ng-container *ngFor="let g of newObjData">
+          <p *ngIf="g.dt_txt.includes('9:00:00')">{{g.main.feels_like}}</p>
+     
+         </ng-container>
+   </li>
+   <li *ngIf="newObjData.length > 3"  class="li">
+    <ng-container *ngFor="let g of newObjData">
+      <p *ngIf="g.dt_txt.includes('12:00:00')">{{g.main.feels_like}}</p>
+      
+     </ng-container>
+ </li>
+ <li *ngIf="newObjData.length > 2"  class="li">
+  <ng-container *ngFor="let g of newObjData">
+    <p *ngIf="g.dt_txt.includes('15:00:00')">{{g.main.feels_like}}</p>
+
+   </ng-container>
+</li>
+<li *ngIf="newObjData.length > 1" class="li">
+  <ng-container *ngFor="let g of newObjData">
+    <p *ngIf="g.dt_txt.includes('18:00:00')">{{g.main.feels_like}}</p>
+    
+   </ng-container>
+</li>
+<li *ngIf="newObjData.length > 1" class="li ">
+  <ng-container *ngFor="let g of newObjData">
+    <p *ngIf="g.dt_txt.includes('21:00:00')">{{g.main.feels_like}}</p>
+   
+   </ng-container>
+</li>
+  </ul> 
+  </div> -->
+
+
+ 
+
+
+ 

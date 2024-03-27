@@ -25,6 +25,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -87,12 +88,23 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/leaflet/dist/leaflet.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+             "node_modules/jquery/dist/jquery.min.js",
+             "node_modules/leaflet/dist/leaflet.js",
+              "node_modules/leaflet-velocity/leaflet-velocity.js"
+            ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "e01c382c-a4c1-468b-87e7-31812a5c873c"
   }
 }
