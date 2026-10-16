@@ -1,0 +1,31 @@
+<div class="container">
+  <header class="detail-header">
+    <button (click)="backToCity()" class="glass-btn">{{ 'CITY.BACK' | translate }}</button>
+    <div>
+      <h2 class="city-name">{{ cityName }}</h2>
+      <p class="day-title">
+        {{ 'DAYS.' + day.getUTCDay() | translate }}, {{ day.getUTCDate() }} {{ 'MONTHS.' + day.getUTCMonth() | translate }}
+      </p>
+    </div>
+  </header>
+
+  <h3 class="section-title">{{ 'CITY.HOURLY' | translate }}</h3>
+
+  <!-- საათობრივი პროგნოზის სია -->
+  <div class="hours-grid" *ngIf="hours.length > 0">
+    <div class="card hour-card" *ngFor="let hour of hours">
+      <p class="time">{{ formatTime(hour.dt) }}</p>
+      <img [src]="iconUrl(hour.weather[0].icon)" alt="">
+      <p class="temp">{{ formatTemp(hour.main.temp) }}</p>
+      <p class="desc">{{ 'WEATHER.' + weatherKey(hour.weather[0].id) | translate }}</p>
+
+      <div class="extra-info">
+        <span>💧 {{ hour.main.humidity }}%</span>
+        <span>💨 {{ hour.wind.speed | number:'1.0-1' }} {{ 'UNITS.MS' | translate }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- შეტყობინება თუ მონაცემები არ არის -->
+  <p class="no-data" *ngIf="hours.length === 0">{{ 'STATUS.NO_DATA' | translate }}</p>
+</div>

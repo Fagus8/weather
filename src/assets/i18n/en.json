@@ -1,0 +1,92 @@
+{
+  "HEADER": {
+    "BRAND": "Resort Weather"
+  },
+  "HOME": {
+    "TITLE": "Weather at Georgia's Resorts",
+    "SUBTITLE": "Find out where the weather is best for a getaway today",
+    "TAB_ALL": "All",
+    "TAB_MOUNTAIN": "Mountains",
+    "TAB_SEA": "Seaside",
+    "MOUNTAIN_RESORTS": "Mountain resorts",
+    "SEA_RESORTS": "Seaside resorts",
+    "MAP_TITLE": "Find a place on the map",
+    "MAP_SUBTITLE": "A city, a village or a resort — see where it is and what the weather is like there"
+  },
+  "SEARCH": {
+    "PLACEHOLDER": "Search for a place in Georgia...",
+    "CLEAR": "Clear"
+  },
+  "MAP": {
+    "DETAILS": "Detailed forecast →"
+  },
+  "RESORT": {
+    "MOUNTAIN": "Mountain resort",
+    "SEA": "Seaside resort",
+    "WIND": "Wind",
+    "WATER": "Water",
+    "ALTITUDE": "Altitude",
+    "SNOW": "Snow",
+    "PRECIPITATION": "Rain/snow today",
+    "HUMIDITY": "Humidity",
+    "FEELS_LIKE": "Feels like",
+    "MORE": "More →",
+    "BACK": "← Back",
+    "NOW": "Now",
+    "TODAY": "Today",
+    "TODAY_HOURLY": "Today, hour by hour",
+    "NO_HOURS_LEFT": "The day is almost over. Check tomorrow's forecast below.",
+    "WEEK": "7-day forecast",
+    "NOT_FOUND": "We couldn't find that resort.",
+    "MAP": "On the map"
+  },
+  "CITY": {
+    "POPULAR": "Popular cities",
+    "HUMIDITY": "Humidity",
+    "WIND": "Wind",
+    "FEELS_LIKE": "Feels like",
+    "PRESSURE": "Pressure",
+    "FORECAST": "5-day forecast",
+    "FORECAST_HINT": "Tap a day to see the hourly forecast",
+    "MAP": "Map",
+    "DARK_MODE": "🌙 Dark mode",
+    "LIGHT_MODE": "☀️ Light mode",
+    "HOURLY": "Hourly forecast",
+    "BACK": "← Back"
+  },
+  "STATUS": {
+    "LOADING": "Loading…",
+    "LOAD_ERROR": "Couldn't load the weather",
+    "NOTHING_FOUND": "No cities found",
+    "EMPTY_SEARCH": "Type a place name first",
+    "NO_INTERNET": "No internet connection. Check your connection and try again.",
+    "BAD_KEY": "The API key is invalid or not active yet.",
+    "UNKNOWN": "Something went wrong. Please try again in a bit.",
+    "NO_DATA": "Nothing to show here. Taking you back...",
+    "PLACE_NOT_FOUND": "Place not found"
+  },
+  "UNITS": {
+    "MS": "m/s",
+    "M": "m",
+    "CM": "cm",
+    "MM": "mm",
+    "HPA": "hPa"
+  },
+  "WEATHER": {
+    "clear": "Clear sky",
+    "mainlyClear": "Mostly clear",
+    "partlyCloudy": "Partly cloudy",
+    "overcast": "Cloudy",
+    "fog": "Fog",
+    "drizzle": "Drizzle",
+    "rain": "Rain",
+    "showers": "Rain showers",
+    "snow": "Snow",
+    "snowShowers": "Snow showers",
+    "thunderstorm": "Thunderstorm"
+  },
+  "DAYS": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+  "DAYS_SHORT": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+  "MONTHS": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+  "FOOTER": "Made by [your name], 2026"
+}

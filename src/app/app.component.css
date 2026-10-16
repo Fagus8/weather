@@ -1,3 +1,47 @@
-.res {
-    width: 50%;
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.6s ease;
 }
+
+.content {
+  flex: 1;
+}
+
+/* ჰედერი: ლოგო | ძებნა | ენა */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 16px 16px 0;
+}
+
+.brand {
+  min-width: 0;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* ფონები */
+.theme-resorts { background: linear-gradient(160deg, #1e3a5f 0%, #10243f 100%); }
+.theme-default { background: linear-gradient(160deg, #4f8df5 0%, #7b5cf0 100%); }
+.theme-sunny   { background: linear-gradient(160deg, #f7a440 0%, #e8674a 100%); }
+.theme-cloudy  { background: linear-gradient(160deg, #7f9cbf 0%, #55698a 100%); }
+.theme-rainy   { background: linear-gradient(160deg, #56677d 0%, #2c3a4d 100%); }
+.theme-snowy   { background: linear-gradient(160deg, #9db8d6 0%, #6d87ad 100%); }
+.theme-night   { background: linear-gradient(160deg, #1e2a4a 0%, #0b1023 100%); }
+.theme-dark    { background: linear-gradient(160deg, #2d3436 0%, #000000 100%); }

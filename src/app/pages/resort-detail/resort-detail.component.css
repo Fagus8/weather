@@ -1,0 +1,211 @@
+.back-btn {
+  display: inline-block;
+  text-decoration: none;
+  margin-bottom: 16px;
+}
+
+.message {
+  color: var(--text-muted);
+  margin: 16px 0;
+}
+
+/* სათაური კურორტის ტიპის ფერით */
+.resort-header {
+  padding: 26px;
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+  overflow-wrap: anywhere;
+}
+
+.resort-header.mountain {
+  background: linear-gradient(135deg, #2f855a 0%, #2b6cb0 100%);
+}
+
+.resort-header.sea {
+  background: linear-gradient(135deg, #0284c7 0%, #0d9488 100%);
+}
+
+.type {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.resort-header h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 4px 0 10px;
+}
+
+.description {
+  max-width: 650px;
+  opacity: 0.95;
+}
+
+/* ახლანდელი ამინდი */
+.current-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px 26px;
+  margin: 16px 0 28px;
+}
+
+.current-main {
+  display: flex;
+  align-items: center;
+}
+
+.current-main img {
+  width: 110px;
+}
+
+.label {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.big-temp {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.desc {
+  font-size: 1.05rem;
+}
+
+.current-details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1 1 240px;
+  max-width: 420px;
+}
+
+.current-details li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.current-details li:last-child {
+  border-bottom: none;
+}
+
+.section-title {
+  margin: 0 0 12px;
+}
+
+/* საათობრივი: ჰორიზონტალურად სქროლვადი რიგი */
+.hours-row {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-bottom: 28px;
+}
+
+.hour-card {
+  flex: 0 0 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 6px;
+}
+
+.hour-card img {
+  width: 50px;
+}
+
+.hour-time {
+  font-weight: 600;
+}
+
+.hour-wind {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* 7 დღე */
+.days-list {
+  padding: 6px 20px;
+}
+
+.day-row {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.day-row:last-child {
+  border-bottom: none;
+}
+
+.day-name {
+  font-weight: 600;
+}
+
+.day-weather {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.day-weather img {
+  width: 44px;
+  flex-shrink: 0;
+}
+
+.day-desc {
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.day-temps {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.day-min {
+  color: var(--text-muted);
+  margin-left: 6px;
+}
+
+.map-title {
+  margin-top: 28px;
+}
+
+.map-card {
+  padding: 8px;
+}
+
+@media (max-width: 500px) {
+  .resort-header {
+    padding: 20px;
+  }
+
+  .resort-header h1 {
+    font-size: 1.6rem;
+  }
+
+  /* ტელეფონზე აღწერას ვმალავთ, აიქონი საკმარისია */
+  .day-row {
+    grid-template-columns: 1fr auto auto;
+  }
+
+  .day-desc {
+    display: none;
+  }
+
+  .day-name {
+    font-size: 0.9rem;
+  }
+}

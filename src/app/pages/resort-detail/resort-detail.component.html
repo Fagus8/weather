@@ -1,0 +1,94 @@
+<div class="container">
+  <a routerLink="/" class="glass-btn back-btn">{{ 'RESORT.BACK' | translate }}</a>
+
+  <!-- არასწორი id URL-ში -->
+  <p class="message" *ngIf="!resort">{{ 'RESORT.NOT_FOUND' | translate }}</p>
+
+  <ng-container *ngIf="resort">
+    <!-- სათაური და აღწერა -->
+    <header class="resort-header" [ngClass]="resort.type">
+      <p class="type">
+        {{ resort.type === 'mountain' ? '⛰️' : '🏖️' }}
+        {{ (resort.type === 'mountain' ? 'RESORT.MOUNTAIN' : 'RESORT.SEA') | translate }}
+        · {{ resort.region[lang] }}
+      </p>
+      <h1>{{ resort.name[lang] }}</h1>
+      <p class="description">{{ resort.description[lang] }}</p>
+    </header>
+
+    <!-- ახლანდელი ამინდი -->
+    <section class="card current-card">
+      <p class="message" *ngIf="loadingCurrent">{{ 'STATUS.LOADING' | translate }}</p>
+      <p class="message" *ngIf="currentFailed">⚠️ {{ 'STATUS.LOAD_ERROR' | translate }}</p>
+
+      <ng-container *ngIf="current">
+        <div class="current-main">
+          <img [src]="icon(current.weatherCode, current.isDay)" alt="">
+          <div>
+            <p class="label">{{ 'RESORT.NOW' | translate }}</p>
+            <span class="big-temp">{{ formatTemp(current.temp) }}</span>
+            <p class="desc">{{ 'WEATHER.' + weatherKey(current.weatherCode) | translate }}</p>
+          </div>
+        </div>
+
+        <ul class="current-details">
+          <li><span>💨 {{ 'RESORT.WIND' | translate }}</span><b>{{ current.wind | number:'1.0-1' }} {{ 'UNITS.MS' | translate }}</b></li>
+          <li><span>💧 {{ 'RESORT.HUMIDITY' | translate }}</span><b>{{ current.humidity }}%</b></li>
+          <li><span>🌡️ {{ 'RESORT.FEELS_LIKE' | translate }}</span><b>{{ formatTemp(current.feelsLike) }}</b></li>
+          <li *ngIf="resort.type === 'sea' && current.waterTemp !== null">
+            <span>🌊 {{ 'RESORT.WATER' | translate }}</span><b>{{ formatTemp(current.waterTemp) }}</b>
+          </li>
+          <ng-container *ngIf="resort.type === 'mountain'">
+            <li><span>⛰️ {{ 'RESORT.ALTITUDE' | translate }}</span><b>{{ resort.elevation }} {{ 'UNITS.M' | translate }}</b></li>
+            <li><span>❄️ {{ 'RESORT.SNOW' | translate }}</span><b>{{ current.snowDepth }} {{ 'UNITS.CM' | translate }}</b></li>
+          </ng-container>
+        </ul>
+      </ng-container>
+    </section>
+
+    <p class="message" *ngIf="loadingForecast">{{ 'STATUS.LOADING' | translate }}</p>
+    <p class="message" *ngIf="forecastFailed">⚠️ {{ 'STATUS.LOAD_ERROR' | translate }}</p>
+
+    <ng-container *ngIf="!loadingForecast && !forecastFailed">
+      <!-- დღევანდელი საათობრივი პროგნოზი -->
+      <h2 class="section-title">{{ 'RESORT.TODAY_HOURLY' | translate }}</h2>
+      <p class="message" *ngIf="hours.length === 0">{{ 'RESORT.NO_HOURS_LEFT' | translate }}</p>
+      <div class="hours-row">
+        <div class="card hour-card" *ngFor="let hour of hours">
+          <span class="hour-time">{{ hour.time }}</span>
+          <img [src]="icon(hour.weatherCode, hour.isDay)" alt="">
+          <b>{{ formatTemp(hour.temp) }}</b>
+          <span class="hour-wind">💨 {{ hour.wind | number:'1.0-0' }} {{ 'UNITS.MS' | translate }}</span>
+        </div>
+      </div>
+
+      <!-- 7 დღის პროგნოზი -->
+      <h2 class="section-title">{{ 'RESORT.WEEK' | translate }}</h2>
+      <div class="card days-list">
+        <div class="day-row" *ngFor="let day of days; let i = index">
+          <span class="day-name">
+            <ng-container *ngIf="i === 0">{{ 'RESORT.TODAY' | translate }}</ng-container>
+            <ng-container *ngIf="i > 0">
+              {{ 'DAYS.' + date(day).getUTCDay() | translate }},
+              {{ date(day).getUTCDate() }} {{ 'MONTHS.' + date(day).getUTCMonth() | translate }}
+            </ng-container>
+          </span>
+          <span class="day-weather">
+            <img [src]="icon(day.weatherCode, true)" alt="">
+            <span class="day-desc">{{ 'WEATHER.' + weatherKey(day.weatherCode) | translate }}</span>
+          </span>
+          <span class="day-temps">
+            <b>{{ formatTemp(day.max) }}</b>
+            <span class="day-min">{{ formatTemp(day.min) }}</span>
+          </span>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- პატარა რუკა მხოლოდ ამ კურორტით -->
+    <h2 class="section-title map-title">📍 {{ 'RESORT.MAP' | translate }}</h2>
+    <div class="card map-card">
+      <app-location-map [place]="mapPlace" [small]="true"></app-location-map>
+    </div>
+  </ng-container>
+</div>

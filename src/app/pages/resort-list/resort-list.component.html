@@ -1,0 +1,45 @@
+<div class="container">
+  <header class="hero">
+    <h1>{{ 'HOME.TITLE' | translate }}</h1>
+    <p>{{ 'HOME.SUBTITLE' | translate }}</p>
+  </header>
+
+  <!-- ტაბები -->
+  <div class="tabs">
+    <button [class.active]="activeTab === 'all'" (click)="activeTab = 'all'">{{ 'HOME.TAB_ALL' | translate }}</button>
+    <button [class.active]="activeTab === 'mountain'" (click)="activeTab = 'mountain'">⛰️ {{ 'HOME.TAB_MOUNTAIN' | translate }}</button>
+    <button [class.active]="activeTab === 'sea'" (click)="activeTab = 'sea'">🏖️ {{ 'HOME.TAB_SEA' | translate }}</button>
+  </div>
+
+  <section *ngIf="activeTab !== 'sea'">
+    <h2 class="group-title">{{ 'HOME.MOUNTAIN_RESORTS' | translate }}</h2>
+    <div class="resort-grid">
+      <app-resort-card *ngFor="let resort of mountainResorts"
+                       [resort]="resort"
+                       [weather]="weather[resort.id]"
+                       [failed]="failed[resort.id]">
+      </app-resort-card>
+    </div>
+  </section>
+
+  <section *ngIf="activeTab !== 'mountain'">
+    <h2 class="group-title">{{ 'HOME.SEA_RESORTS' | translate }}</h2>
+    <div class="resort-grid">
+      <app-resort-card *ngFor="let resort of seaResorts"
+                       [resort]="resort"
+                       [weather]="weather[resort.id]"
+                       [failed]="failed[resort.id]">
+      </app-resort-card>
+    </div>
+  </section>
+
+  <!-- ძებნა და რუკა -->
+  <section class="map-section">
+    <h2 class="group-title">🗺️ {{ 'HOME.MAP_TITLE' | translate }}</h2>
+    <p class="map-subtitle">{{ 'HOME.MAP_SUBTITLE' | translate }}</p>
+    <app-location-search (placeSelected)="onPlaceSelected($event)"></app-location-search>
+    <div class="map-wrapper">
+      <app-location-map [place]="mapPlace" [showDetailsLink]="true" (detailsClick)="openDetails()"></app-location-map>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,28 @@
+.switcher {
+  display: flex;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 3px;
+}
+
+.switcher button {
+  border: none;
+  background: none;
+  color: var(--text);
+  padding: 6px 10px;
+  border-radius: 9px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.switcher button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.switcher button.active {
+  background: #ffffff;
+  color: #1e293b;
+}

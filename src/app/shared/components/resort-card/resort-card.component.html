@@ -1,0 +1,38 @@
+<a class="resort-card" [ngClass]="resort.type" [routerLink]="['/resort', resort.id]">
+  <div class="card-head">
+    <div class="names">
+      <h3>{{ resort.name[lang] }}</h3>
+      <p class="region">{{ resort.region[lang] }}</p>
+    </div>
+    <span class="type-icon">{{ resort.type === 'mountain' ? '⛰️' : '🏖️' }}</span>
+  </div>
+
+  <p class="status" *ngIf="!weather && !failed">{{ 'STATUS.LOADING' | translate }}</p>
+  <p class="status error" *ngIf="failed">⚠️ {{ 'STATUS.LOAD_ERROR' | translate }}</p>
+
+  <ng-container *ngIf="weather">
+    <div class="now">
+      <img [src]="icon(weather)" alt="">
+      <span class="temp">{{ formatTemp(weather.temp) }}</span>
+      <span class="desc">{{ 'WEATHER.' + weatherKey(weather.weatherCode) | translate }}</span>
+    </div>
+
+    <ul class="extra">
+      <li>💨 {{ 'RESORT.WIND' | translate }}: {{ weather.wind | number:'1.0-1' }} {{ 'UNITS.MS' | translate }}</li>
+
+      <!-- ზღვა -->
+      <li *ngIf="resort.type === 'sea' && weather.waterTemp !== null">
+        🌊 {{ 'RESORT.WATER' | translate }}: {{ formatTemp(weather.waterTemp) }}
+      </li>
+
+      <!-- მთა -->
+      <ng-container *ngIf="resort.type === 'mountain'">
+        <li>⛰️ {{ 'RESORT.ALTITUDE' | translate }}: {{ resort.elevation }} {{ 'UNITS.M' | translate }}</li>
+        <li>❄️ {{ 'RESORT.SNOW' | translate }}: {{ weather.snowDepth }} {{ 'UNITS.CM' | translate }}</li>
+        <li>💧 {{ 'RESORT.PRECIPITATION' | translate }}: {{ weather.precipitation | number:'1.0-1' }} {{ 'UNITS.MM' | translate }}</li>
+      </ng-container>
+    </ul>
+  </ng-container>
+
+  <span class="more">{{ 'RESORT.MORE' | translate }}</span>
+</a>

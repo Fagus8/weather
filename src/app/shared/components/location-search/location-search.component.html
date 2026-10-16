@@ -1,0 +1,29 @@
+<div class="search-box">
+  <div class="search-input">
+    <span class="search-icon">🔍</span>
+    <input type="text"
+           [(ngModel)]="searchText"
+           (ngModelChange)="onSearchChange()"
+           (keydown)="onKeyDown($event)"
+           (focus)="showSuggestions = searchText.trim().length >= 2"
+           [placeholder]="'SEARCH.PLACEHOLDER' | translate"
+           autocomplete="off">
+    <span class="small-spinner" *ngIf="searching"></span>
+    <button class="clear-btn" *ngIf="searchText" (click)="clearSearch()" [title]="'SEARCH.CLEAR' | translate">✕</button>
+  </div>
+
+  <!-- შემოთავაზებების სია -->
+  <ul class="suggestions" *ngIf="showSuggestions">
+    <li *ngFor="let place of suggestions; let i = index"
+        [class.active]="i === activeIndex"
+        (click)="selectPlace(place)"
+        (mouseenter)="activeIndex = i">
+      <span class="suggestion-name">📍 {{ place.name }}</span>
+      <span class="suggestion-place">{{ place.region }}</span>
+    </li>
+    <li class="no-results" *ngIf="suggestions.length === 0 && !searching">{{ 'STATUS.PLACE_NOT_FOUND' | translate }}</li>
+  </ul>
+
+  <!-- შეცდომის შეტყობინება -->
+  <p class="search-message" *ngIf="message">{{ message | translate }}</p>
+</div>

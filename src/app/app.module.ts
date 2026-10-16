@@ -1,28 +1,51 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { WeatherMapComponent } from './weather-map/weather-map.component';
-import { DetailComponent } from './detail/detail.component';
+import { ResortListComponent } from './pages/resort-list/resort-list.component';
+import { ResortDetailComponent } from './pages/resort-detail/resort-detail.component';
+import { CityComponent } from './pages/city/city.component';
+import { DetailComponent } from './pages/detail/detail.component';
+import { ResortCardComponent } from './shared/components/resort-card/resort-card.component';
+import { LanguageSwitcherComponent } from './shared/components/language-switcher/language-switcher.component';
+import { LocationSearchComponent } from './shared/components/location-search/location-search.component';
+import { LocationMapComponent } from './shared/components/location-map/location-map.component';
 
-
+// თარგმანები იტვირთება ფაილებიდან: assets/i18n/ka.json, en.json, ru.json
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    WeatherMapComponent,
+    ResortListComponent,
+    ResortDetailComponent,
+    CityComponent,
     DetailComponent,
-  
+    ResortCardComponent,
+    LanguageSwitcherComponent,
+    LocationSearchComponent,
+    LocationMapComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'ka',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
   ],
-// Provide correct service
   bootstrap: [AppComponent]
 })
 export class AppModule { }

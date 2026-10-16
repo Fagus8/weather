@@ -1,0 +1,101 @@
+<div class="container">
+
+  <!-- პოპულარული ქალაქები და მუქი რეჟიმი -->
+  <div class="top-bar">
+    <div class="quick-cities">
+      <button *ngFor="let city of popularCities"
+              [class.active]="selectedCity?.name === city.name"
+              (click)="openCity(city)">
+        {{ city.name }}
+      </button>
+    </div>
+    <button class="glass-btn" (click)="changeMode()">
+      {{ (darkMode ? 'CITY.LIGHT_MODE' : 'CITY.DARK_MODE') | translate }}
+    </button>
+  </div>
+
+  <p class="error-box" *ngIf="errorMessage">⚠️ {{ errorMessage | translate }}</p>
+
+  <div class="loading" *ngIf="loading">
+    <div class="spinner"></div>
+    <p>{{ 'STATUS.LOADING' | translate }}</p>
+  </div>
+
+  <ng-container *ngIf="current && selectedCity">
+
+    <!-- მიმდინარე ამინდი -->
+    <section class="card current-card">
+      <div class="current-info">
+        <h2 class="city-name">{{ selectedCity.name }}</h2>
+        <p class="country">
+          <img *ngIf="selectedCity.countryCode" [src]="flagUrl(selectedCity.countryCode)" alt="" class="flag">
+          {{ selectedCity.region ? selectedCity.region + ', ' : '' }}{{ selectedCity.country }}
+        </p>
+        <p class="local-time">
+          🕒 {{ localTime }} ·
+          {{ 'DAYS.' + localDate.getUTCDay() | translate }}, {{ localDate.getUTCDate() }} {{ 'MONTHS.' + localDate.getUTCMonth() | translate }}
+        </p>
+      </div>
+
+      <div class="current-temp">
+        <img [src]="iconUrl(current.weather[0].icon, '4x')" alt="">
+        <div>
+          <span class="big-temp">{{ formatTemp(current.main.temp) }}</span>
+          <p class="description">{{ 'WEATHER.' + weatherKey(current.weather[0].id) | translate }}</p>
+          <p class="min-max" *ngIf="days.length > 0 && days[0].date === todayDate">
+            ↑ {{ formatTemp(days[0].max) }} &nbsp; ↓ {{ formatTemp(days[0].min) }}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- დეტალები -->
+    <section class="details-grid">
+      <div class="card detail-card">
+        <span class="detail-icon">💧</span>
+        <span class="detail-label">{{ 'CITY.HUMIDITY' | translate }}</span>
+        <span class="detail-value">{{ current.main.humidity }}%</span>
+      </div>
+      <div class="card detail-card">
+        <span class="detail-icon">💨</span>
+        <span class="detail-label">{{ 'CITY.WIND' | translate }}</span>
+        <span class="detail-value">{{ current.wind.speed | number:'1.0-1' }} {{ 'UNITS.MS' | translate }}</span>
+      </div>
+      <div class="card detail-card">
+        <span class="detail-icon">🌡️</span>
+        <span class="detail-label">{{ 'CITY.FEELS_LIKE' | translate }}</span>
+        <span class="detail-value">{{ formatTemp(current.main.feels_like) }}</span>
+      </div>
+      <div class="card detail-card">
+        <span class="detail-icon">🧭</span>
+        <span class="detail-label">{{ 'CITY.PRESSURE' | translate }}</span>
+        <span class="detail-value">{{ current.main.pressure }} {{ 'UNITS.HPA' | translate }}</span>
+      </div>
+    </section>
+
+    <!-- რამდენიმე დღის პროგნოზი -->
+    <section>
+      <h3 class="section-title">{{ 'CITY.FORECAST' | translate }}</h3>
+      <p class="hint">{{ 'CITY.FORECAST_HINT' | translate }}</p>
+      <div class="days-row">
+        <div class="card day-card" *ngFor="let day of days" (click)="openDay(day)">
+          <span class="day-name">
+            {{ day.date === todayDate ? ('RESORT.TODAY' | translate) : ('DAYS_SHORT.' + dayIndex(day) | translate) }}
+          </span>
+          <img [src]="iconUrl(day.icon)" alt="">
+          <span class="day-temps">
+            <b>{{ formatTemp(day.max) }}</b>
+            <span class="day-min">{{ formatTemp(day.min) }}</span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- რუკა -->
+    <section class="card map-card">
+      <h3 class="section-title">🗺️ {{ 'CITY.MAP' | translate }}</h3>
+      <app-location-map [place]="mapPlace" [small]="true"></app-location-map>
+    </section>
+
+  </ng-container>
+</div>

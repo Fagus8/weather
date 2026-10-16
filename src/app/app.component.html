@@ -1,2 +1,15 @@
+<!-- ფონი გვერდის/ამინდის მიხედვით იცვლება -->
+<div class="app" [ngClass]="weatherState.theme">
+  <header class="site-header">
+    <a routerLink="/" class="brand">🌤️ {{ 'HEADER.BRAND' | translate }}</a>
+    <app-language-switcher></app-language-switcher>
+  </header>
 
-<router-outlet class="res"></router-outlet>
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="footer">
+    {{ 'FOOTER' | translate }}
+  </footer>
+</div>

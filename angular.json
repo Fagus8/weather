@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "pro": {
+    "weather-app": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/pro",
+            "outputPath": "dist/weather-app",
+            "allowedCommonJsDependencies": ["leaflet"],
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -25,7 +26,6 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -35,13 +35,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
+                  "maximumWarning": "700kb",
                   "maximumError": "1mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ],
               "outputHashing": "all"
@@ -61,10 +61,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "pro:build:production"
+              "browserTarget": "weather-app:build:production"
             },
             "development": {
-              "browserTarget": "pro:build:development"
+              "browserTarget": "weather-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -72,7 +72,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "pro:build"
+            "browserTarget": "weather-app:build"
           }
         },
         "test": {
@@ -88,17 +88,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "node_modules/leaflet/dist/leaflet.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
-              
+              "src/styles.css"
             ],
-            "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.min.js",
-             "node_modules/jquery/dist/jquery.min.js",
-             "node_modules/leaflet/dist/leaflet.js",
-              "node_modules/leaflet-velocity/leaflet-velocity.js"
-            ]
+            "scripts": []
           }
         }
       }

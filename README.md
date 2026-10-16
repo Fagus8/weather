@@ -1,27 +1,43 @@
-# Pro
+# Weather App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.1.
+Weather for Georgia's mountain and seaside resorts, built with Angular 16.
+Available in Georgian, English and Russian (ngx-translate, texts in `src/assets/i18n/`).
 
-## Development server
+- Resorts (`/`, `/resort/:id`): Open-Meteo forecast and Marine APIs (7-day forecast, snow, water temperature).
+- Place search on the main page: Open-Meteo Geocoding API, limited to Georgia. The found place is shown
+  on a Leaflet + OpenStreetMap map; "Detailed forecast" opens `/city` (OpenWeatherMap API).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Project structure
 
-## Code scaffolding
+```
+src/
+├── app/
+│   ├── core/                  # Non-UI app logic
+│   │   ├── models/            # TypeScript interfaces (weather.model.ts)
+│   │   ├── services/          # weather.service (API), weather-state.service (shared data)
+│   │   └── utils/             # Formatting and weather-code → translation key helpers
+│   ├── data/resorts.ts        # Resort list (names, regions, descriptions in 3 languages)
+│   ├── pages/                 # Routed pages
+│   │   ├── resort-list/       # /           — resort cards with tabs
+│   │   ├── resort-detail/     # /resort/:id — hourly + 7-day forecast
+│   │   ├── city/              # /city       — detailed forecast for a searched place
+│   │   └── detail/            # /detail     — hourly forecast for one day of a city
+│   ├── shared/
+│   │   └── components/        # resort-card, location-search, location-map, language-switcher
+│   ├── app-routing.module.ts
+│   ├── app.module.ts
+│   └── app.component.*
+├── assets/i18n/               # ka.json, en.json, ru.json
+├── environments/              # API keys and URLs
+├── index.html
+├── main.ts
+└── styles.css
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Commands
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+| Command         | Description                                 |
+| --------------- | ------------------------------------------- |
+| `npm start`     | Dev server at `http://localhost:4200/`      |
+| `npm run build` | Production build, output in `dist/weather-app/` |
+| `npm test`      | Unit tests (Karma)                          |
