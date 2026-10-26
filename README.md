@@ -1,11 +1,15 @@
-# Weather App
+# SkyResort — skyresort.ge
 
-Weather for Georgia's mountain and seaside resorts, built with Angular 16.
+Live at [skyresort.ge](https://skyresort.ge). Weather for Georgia's mountain and seaside resorts, built with Angular 16.
 Available in Georgian, English and Russian (ngx-translate, texts in `src/assets/i18n/`).
 
 - Resorts (`/`, `/resort/:id`): Open-Meteo forecast and Marine APIs (7-day forecast, snow, water temperature).
-- Place search on the main page: Open-Meteo Geocoding API, limited to Georgia. The found place is shown
-  on a Leaflet + OpenStreetMap map; "Detailed forecast" opens `/city` (OpenWeatherMap API).
+- Live search in the header (cities, villages and resorts worldwide): our resort list, Photon (OpenStreetMap,
+  Georgian villages only) and Open-Meteo Geocoding (whole world). Georgian places are listed first.
+  A resort opens `/resort/:id`, any other place opens `/place` with a Wikipedia
+  description, current weather, hourly + 7-day forecast and a small map; "Detailed forecast" opens `/city`
+  (OpenWeatherMap API).
+- Main page map: OpenWeatherMap temperature layer over Leaflet + OpenStreetMap.
 
 ## Project structure
 
@@ -20,6 +24,7 @@ src/
 │   ├── pages/                 # Routed pages
 │   │   ├── resort-list/       # /           — resort cards with tabs
 │   │   ├── resort-detail/     # /resort/:id — hourly + 7-day forecast
+│   │   ├── place/             # /place      — searched place: description, weather, forecast
 │   │   ├── city/              # /city       — detailed forecast for a searched place
 │   │   └── detail/            # /detail     — hourly forecast for one day of a city
 │   ├── shared/
@@ -39,5 +44,5 @@ src/
 | Command         | Description                                 |
 | --------------- | ------------------------------------------- |
 | `npm start`     | Dev server at `http://localhost:4200/`      |
-| `npm run build` | Production build, output in `dist/weather-app/` |
+| `npm run build` | Production build, output in `dist/skyresort/` |
 | `npm test`      | Unit tests (Karma)                          |

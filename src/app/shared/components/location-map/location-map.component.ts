@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnDestroy, SimpleChanges, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import * as L from 'leaflet';
 import { MapPlace } from '../../../core/models/weather.model';
 import { formatTemp, iconUrl } from '../../../core/utils/format';
+import { environment } from '../../../../environments/environment';
 
 // მთელი საქართველო (სამხრეთ-დასავლეთი და ჩრდილო-აღმოსავლეთი კუთხეები)
 const GEORGIA_BOUNDS: L.LatLngBoundsExpression = [[41.05, 40.0], [43.6, 46.75]];
@@ -29,8 +30,7 @@ export class LocationMapComponent implements AfterViewInit, OnChanges, OnDestroy
   @ViewChild('mapBox') mapBox!: ElementRef;
   @Input() place: MapPlace | null = null;
   @Input() small = false;            // პატარა რუკა კურორტის გვერდზე
-  @Input() showDetailsLink = false;  // ფანჯარაში "დეტალური პროგნოზი" ბმული
-  @Output() detailsClick = new EventEmitter<MapPlace>();
+  @Input() temperatureLayer = false; // OpenWeatherMap-ის ტემპერატურის ფენა რუკაზე
 
   private map?: L.Map;
   private marker?: L.Marker;
@@ -46,6 +46,17 @@ export class LocationMapComponent implements AfterViewInit, OnChanges, OnDestroy
       attribution: '© OpenStreetMap contributors',
       maxZoom: 18
     }).addTo(this.map);
+
+    // ტემპერატურის ფერადი ფენა OpenStreetMap-ის თავზე. OpenWeatherMap-ის ფილები დიდ ზუმზე
+    // არ არსებობს, ამიტომ maxNativeZoom-ით Leaflet 9-ე ზუმის ფილებს ადიდებს
+    if (this.temperatureLayer) {
+      L.tileLayer(`https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=${environment.openWeatherApiKey}`, {
+        attribution: '© OpenWeatherMap',
+        maxNativeZoom: 9,
+        maxZoom: 18,
+        opacity: 0.8
+      }).addTo(this.map);
+    }
 
     if (this.place) {
       this.showPlace(false);
@@ -83,12 +94,15 @@ export class LocationMapComponent implements AfterViewInit, OnChanges, OnDestroy
     this.marker = L.marker(position, { icon: markerIcon }).addTo(this.map);
     this.marker.bindPopup(this.createPopup());
 
+    // ტემპერატურის რუკაზე ცოტა შორიდან ვუყურებთ, რომ ირგვლივ ტემპერატურაც ჩანდეს
+    const zoom = this.temperatureLayer ? 9 : this.small ? 11 : 12;
+
     if (animate) {
       // გლუვი გადაფრენა; ფანჯარას ვხსნით, როცა რუკა გაჩერდება
-      this.map.flyTo(position, 12, { duration: 1.5 });
+      this.map.flyTo(position, zoom, { duration: 1.5 });
       this.map.once('moveend', () => this.marker?.openPopup());
     } else {
-      this.map.setView(position, this.small ? 11 : 12);
+      this.map.setView(position, zoom);
     }
   }
 
@@ -127,18 +141,6 @@ export class LocationMapComponent implements AfterViewInit, OnChanges, OnDestroy
       weather.append(img, temp);
     }
     box.appendChild(weather);
-
-    if (this.showDetailsLink) {
-      const link = document.createElement('a');
-      link.href = '#';
-      link.textContent = this.translate.instant('MAP.DETAILS');
-      // Leaflet-ის ფანჯარა Angular-ის გარეთაა, ამიტომ routerLink აქ არ მუშაობს და click-ს ვიჭერთ
-      link.addEventListener('click', event => {
-        event.preventDefault();
-        this.detailsClick.emit(place);
-      });
-      box.appendChild(link);
-    }
 
     return box;
   }

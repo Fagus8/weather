@@ -1,1 +1,14 @@
-<div #mapBox class="map" [class.small]="small"></div>
+<div class="map-box">
+  <div #mapBox class="map" [class.small]="small"></div>
+
+  <!-- ტემპერატურის ფერების ახსნა -->
+  <div class="legend" *ngIf="temperatureLayer">
+    <span class="legend-unit">°C</span>
+    <div class="legend-scale">
+      <div class="legend-bar"></div>
+      <div class="legend-labels">
+        <span>-30</span><span>-20</span><span>-10</span><span>0</span><span>10</span><span>20</span><span>30</span>
+      </div>
+    </div>
+  </div>
+</div>

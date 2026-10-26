@@ -61,6 +61,7 @@ export interface City {
   countryCode: string;
   lat: number;
   lon: number;
+  resortId?: string; // თუ ჩვენი სიის კურორტია (RESORTS), მაგ. 'gudauri'
 }
 
 // ერთი დღე პროგნოზის ბარათებისთვის
@@ -132,4 +133,19 @@ export interface DailyForecast {
   max: number;
   weatherCode: number;
   precipitation: number;
+}
+
+// საათობრივი + 7 დღის პროგნოზი (Open-Meteo)
+export interface PlaceForecast {
+  hours: HourForecast[];
+  days: DailyForecast[];
+  elevation: number; // მეტრი ზღვის დონიდან
+}
+
+// ადგილის მოკლე აღწერა Wikipedia-დან
+export interface WikiSummary {
+  title: string;
+  text: string;
+  image?: string; // პატარა სურათი, თუ სტატიას აქვს
+  url: string;    // სრული სტატიის ბმული
 }

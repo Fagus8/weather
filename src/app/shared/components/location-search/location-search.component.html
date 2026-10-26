@@ -18,8 +18,12 @@
         [class.active]="i === activeIndex"
         (click)="selectPlace(place)"
         (mouseenter)="activeIndex = i">
-      <span class="suggestion-name">📍 {{ place.name }}</span>
-      <span class="suggestion-place">{{ place.region }}</span>
+      <span class="suggestion-name">
+        <img *ngIf="isForeign(place); else icon" class="flag" [src]="flag(place)" alt="">
+        <ng-template #icon>{{ placeIcon(place) }}</ng-template>
+        {{ place.name }}
+      </span>
+      <span class="suggestion-place">{{ placeType(place) }}</span>
     </li>
     <li class="no-results" *ngIf="suggestions.length === 0 && !searching">{{ 'STATUS.PLACE_NOT_FOUND' | translate }}</li>
   </ul>

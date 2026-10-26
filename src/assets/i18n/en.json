@@ -1,6 +1,6 @@
 {
   "HEADER": {
-    "BRAND": "Resort Weather"
+    "BRAND": "SkyResort"
   },
   "HOME": {
     "TITLE": "Weather at Georgia's Resorts",
@@ -10,15 +10,20 @@
     "TAB_SEA": "Seaside",
     "MOUNTAIN_RESORTS": "Mountain resorts",
     "SEA_RESORTS": "Seaside resorts",
-    "MAP_TITLE": "Find a place on the map",
-    "MAP_SUBTITLE": "A city, a village or a resort — see where it is and what the weather is like there"
+    "MAP_TITLE": "Temperature map",
+    "MAP_SUBTITLE": "Current temperature across Georgia. Use the search at the top to see a specific place"
   },
   "SEARCH": {
-    "PLACEHOLDER": "Search for a place in Georgia...",
+    "PLACEHOLDER": "City, village or resort worldwide...",
     "CLEAR": "Clear"
   },
   "MAP": {
     "DETAILS": "Detailed forecast →"
+  },
+  "PLACE": {
+    "ABOUT": "About this place",
+    "WIKIPEDIA": "Read more on Wikipedia →",
+    "ABOVE_SEA": "above sea level"
   },
   "RESORT": {
     "MOUNTAIN": "Mountain resort",
@@ -88,5 +93,5 @@
   "DAYS": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
   "DAYS_SHORT": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
   "MONTHS": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-  "FOOTER": "Made by [your name], 2026"
+  "FOOTER": "© 2026 SkyResort · skyresort.ge"
 }

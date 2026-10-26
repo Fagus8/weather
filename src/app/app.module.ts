@@ -10,6 +10,7 @@ import { ResortListComponent } from './pages/resort-list/resort-list.component';
 import { ResortDetailComponent } from './pages/resort-detail/resort-detail.component';
 import { CityComponent } from './pages/city/city.component';
 import { DetailComponent } from './pages/detail/detail.component';
+import { PlaceComponent } from './pages/place/place.component';
 import { ResortCardComponent } from './shared/components/resort-card/resort-card.component';
 import { LanguageSwitcherComponent } from './shared/components/language-switcher/language-switcher.component';
 import { LocationSearchComponent } from './shared/components/location-search/location-search.component';
@@ -27,6 +28,7 @@ export function createTranslateLoader(http: HttpClient) {
     ResortDetailComponent,
     CityComponent,
     DetailComponent,
+    PlaceComponent,
     ResortCardComponent,
     LanguageSwitcherComponent,
     LocationSearchComponent,

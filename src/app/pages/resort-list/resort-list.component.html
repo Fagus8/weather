@@ -33,13 +33,12 @@
     </div>
   </section>
 
-  <!-- ძებნა და რუკა -->
+  <!-- ტემპერატურის რუკა მთელი საქართველოსთვის -->
   <section class="map-section">
-    <h2 class="group-title">🗺️ {{ 'HOME.MAP_TITLE' | translate }}</h2>
+    <h2 class="group-title">🌡️ {{ 'HOME.MAP_TITLE' | translate }}</h2>
     <p class="map-subtitle">{{ 'HOME.MAP_SUBTITLE' | translate }}</p>
-    <app-location-search (placeSelected)="onPlaceSelected($event)"></app-location-search>
     <div class="map-wrapper">
-      <app-location-map [place]="mapPlace" [showDetailsLink]="true" (detailsClick)="openDetails()"></app-location-map>
+      <app-location-map [temperatureLayer]="true"></app-location-map>
     </div>
   </section>
 </div>

@@ -29,6 +29,24 @@
   font-size: 1.1rem;
 }
 
+.header-search {
+  flex: 1;
+  max-width: 440px;
+}
+
+/* ტელეფონზე ძებნა ცალკე ხაზზე, მთელ სიგანეზე */
+@media (max-width: 640px) {
+  .site-header {
+    flex-wrap: wrap;
+  }
+
+  .header-search {
+    order: 3;
+    flex-basis: 100%;
+    max-width: none;
+  }
+}
+
 .footer {
   text-align: center;
   padding: 20px;

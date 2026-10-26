@@ -1,19 +1,21 @@
-import { Component, EventEmitter, HostListener, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subject, Subscription, catchError, debounceTime, distinctUntilChanged, of, switchMap } from 'rxjs';
 import { WeatherService } from '../../../core/services/weather.service';
 import { City } from '../../../core/models/weather.model';
+import { RESORTS } from '../../../data/resorts';
+import { flagUrl } from '../../../core/utils/format';
 
-// ადგილის ძებნა საქართველოში (ლაივ სერჩი). არჩეულ ადგილს მშობელ კომპონენტს გადავცემთ,
-// ის კი რუკაზე აჩვენებს.
+// ადგილის ძებნა მთელ მსოფლიოში (ლაივ სერჩი): ქალაქები, სოფლები და კურორტები. ჰედერშია და ყველა გვერდზე ჩანს.
+// არჩეული ადგილი იხსნება თავის გვერდზე: კურორტი → /resort/:id, სხვა ადგილი → /place.
 @Component({
   selector: 'app-location-search',
   templateUrl: './location-search.component.html',
   styleUrls: ['./location-search.component.css']
 })
 export class LocationSearchComponent implements OnInit, OnDestroy {
-  @Output() placeSelected = new EventEmitter<City>();
 
   searchText = '';
   suggestions: City[] = [];
@@ -26,7 +28,8 @@ export class LocationSearchComponent implements OnInit, OnDestroy {
 
   constructor(
     private weatherService: WeatherService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -40,7 +43,7 @@ export class LocationSearchComponent implements OnInit, OnDestroy {
         }
         this.searching = true;
         // catchError საჭიროა, თორემ ერთი შეცდომის შემდეგ ძებნა საერთოდ გაჩერდება
-        return this.weatherService.searchPlaces(text, this.translate.currentLang).pipe(
+        return this.weatherService.searchAll(text, this.translate.currentLang).pipe(
           catchError(() => of([]))
         );
       })
@@ -50,7 +53,8 @@ export class LocationSearchComponent implements OnInit, OnDestroy {
       this.activeIndex = -1;
       this.message = '';
       this.showSuggestions = this.searchText.trim().length >= 2;
-    });  }
+    });
+  }
 
   ngOnDestroy(): void {
     this.searchSub.unsubscribe();
@@ -94,7 +98,7 @@ export class LocationSearchComponent implements OnInit, OnDestroy {
 
     // სია ჯერ არ ჩამოსულა (მაგ. სწრაფად დააჭირეს Enter-ს), ამიტომ პირდაპირ ვეძებთ
     this.searching = true;
-    this.weatherService.searchPlaces(text, this.translate.currentLang).subscribe({
+    this.weatherService.searchAll(text, this.translate.currentLang).subscribe({
       next: places => {
         this.searching = false;
         if (places.length > 0) {
@@ -112,7 +116,38 @@ export class LocationSearchComponent implements OnInit, OnDestroy {
 
   selectPlace(place: City) {
     this.clearSearch();
-    this.placeSelected.emit(place);
+    // ჩვენს კურორტს თავისი გვერდი აქვს, სხვა ადგილისთვის /place გვერდი ლინკის პარამეტრებს წაიკითხავს
+    if (place.resortId) {
+      this.router.navigate(['/resort', place.resortId]);
+      return;
+    }
+    this.router.navigate(['/place'], {
+      queryParams: { name: place.name, region: place.region, country: place.country, code: place.countryCode, lat: place.lat, lon: place.lon }
+    });
+  }
+
+  // კურორტს თავისი აიქონი აქვს, ქალაქს და სოფელს - 📍
+  placeIcon(place: City): string {
+    const resort = RESORTS.find(r => r.id === place.resortId);
+    if (!resort) return '📍';
+    return resort.type === 'mountain' ? '⛰️' : '🏖️';
+  }
+
+  // კურორტი → ტიპი, საქართველოს ადგილი → რეგიონი, საზღვარგარეთ → "რეგიონი, ქვეყანა"
+  placeType(place: City): string {
+    const resort = RESORTS.find(r => r.id === place.resortId);
+    if (resort) return this.translate.instant(resort.type === 'mountain' ? 'RESORT.MOUNTAIN' : 'RESORT.SEA');
+    if (this.isForeign(place)) return [place.region, place.country].filter(Boolean).join(', ');
+    return place.region;
+  }
+
+  // საზღვარგარეთის ადგილს 📍-ის ნაცვლად დროშა აქვს
+  isForeign(place: City): boolean {
+    return !!place.countryCode && place.countryCode !== 'GE';
+  }
+
+  flag(place: City): string {
+    return flagUrl(place.countryCode);
   }
 
   clearSearch() {

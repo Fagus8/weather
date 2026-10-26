@@ -21,6 +21,7 @@ export class ResortDetailComponent implements OnInit, OnDestroy {
   days: DailyForecast[] = [];
   mapPlace: MapPlace | null = null;
   private langSub?: Subscription;
+  private paramSub?: Subscription;
 
   loadingCurrent = true;
   loadingForecast = true;
@@ -37,35 +38,53 @@ export class ResortDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // URL-იდან id-ს ვიღებთ, მაგ. /resort/gudauri → "gudauri"
-    const id = this.route.snapshot.paramMap.get('id');
-    this.resort = RESORTS.find(r => r.id === id);
-    if (!this.resort) return;
-
     // რუკის ფანჯარაში კურორტის სახელი ენის შეცვლისას განახლდეს
-    this.updateMapPlace();
     this.langSub = this.translate.onLangChange.subscribe(() => this.updateMapPlace());
 
-    this.weatherService.getResortWeather(this.resort).subscribe({
+    // URL-იდან id-ს ვიღებთ, მაგ. /resort/gudauri → "gudauri".
+    // subscribe და არა snapshot: ძებნით ერთი კურორტიდან მეორეზე გადასვლისას გვერდი თავიდან არ იქმნება
+    this.paramSub = this.route.paramMap.subscribe(params => this.load(params.get('id')));
+  }
+
+  private load(id: string | null) {
+    this.resort = RESORTS.find(r => r.id === id);
+    this.current = undefined;
+    this.hours = [];
+    this.days = [];
+    this.loadingCurrent = true;
+    this.loadingForecast = true;
+    this.currentFailed = false;
+    this.forecastFailed = false;
+    if (!this.resort) return;
+
+    const resort = this.resort;
+    this.updateMapPlace();
+
+    // თუ ამასობაში სხვა კურორტზე გადავიდნენ, ძველ პასუხს აღარ ვიყენებთ
+    this.weatherService.getResortWeather(resort).subscribe({
       next: data => {
+        if (this.resort !== resort) return;
         this.current = data;
         this.loadingCurrent = false;
         this.updateMapPlace();
       },
       error: () => {
+        if (this.resort !== resort) return;
         this.currentFailed = true;
         this.loadingCurrent = false;
         this.updateMapPlace();
       }
     });
 
-    this.weatherService.getResortForecast(this.resort).subscribe({
+    this.weatherService.getResortForecast(resort).subscribe({
       next: data => {
+        if (this.resort !== resort) return;
         this.hours = data.hours;
         this.days = data.days;
         this.loadingForecast = false;
       },
       error: () => {
+        if (this.resort !== resort) return;
         this.forecastFailed = true;
         this.loadingForecast = false;
       }
@@ -74,6 +93,7 @@ export class ResortDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.langSub?.unsubscribe();
+    this.paramSub?.unsubscribe();
   }
 
   updateMapPlace() {

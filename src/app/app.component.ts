@@ -7,7 +7,7 @@ import { WeatherStateService } from './core/services/weather-state.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'weather-app';
+  title = 'skyresort';
 
   // public, რომ template-მა ფონის თემა (weatherState.theme) წაიკითხოს
   constructor(public weatherState: WeatherStateService) {}

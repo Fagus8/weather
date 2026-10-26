@@ -101,11 +101,6 @@ button, input, select {
   height: 44px;
 }
 
-.map-popup a {
-  font-weight: 600;
-  color: #2563eb;
-}
-
 /* მბრუნავი loading წრე */
 .spinner {
   width: 42px;
