@@ -93,5 +93,6 @@
   "DAYS": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
   "DAYS_SHORT": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
   "MONTHS": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-  "FOOTER": "© 2026 SkyResort · skyresort.ge"
+  "FOOTER": "© 2026 SkyResort · skyresort.ge",
+  "DATA_SOURCE": "Weather data by"
 }

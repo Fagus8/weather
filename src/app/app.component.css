@@ -54,6 +54,15 @@
   color: var(--text-muted);
 }
 
+.data-source {
+  margin-top: 4px;
+  font-size: 0.8rem;
+}
+
+.data-source a {
+  color: inherit;
+}
+
 /* ფონები */
 .theme-resorts { background: linear-gradient(160deg, #1e3a5f 0%, #10243f 100%); }
 .theme-default { background: linear-gradient(160deg, #4f8df5 0%, #7b5cf0 100%); }
