@@ -11,10 +11,10 @@
     "MOUNTAIN_RESORTS": "Mountain resorts",
     "SEA_RESORTS": "Seaside resorts",
     "MAP_TITLE": "Temperature map",
-    "MAP_SUBTITLE": "Current temperature across Georgia. Use the search at the top to see a specific place"
+    "MAP_SUBTITLE": "Current temperature across Georgia. Use the search at the top to see a specific place."
   },
   "SEARCH": {
-    "PLACEHOLDER": "City, village or resort worldwide...",
+    "PLACEHOLDER": "City, village or resort worldwide…",
     "CLEAR": "Clear"
   },
   "MAP": {
@@ -32,14 +32,14 @@
     "WATER": "Water",
     "ALTITUDE": "Altitude",
     "SNOW": "Snow",
-    "PRECIPITATION": "Rain/snow today",
+    "PRECIPITATION": "Precipitation today",
     "HUMIDITY": "Humidity",
     "FEELS_LIKE": "Feels like",
     "MORE": "More →",
     "BACK": "← Back",
     "NOW": "Now",
     "TODAY": "Today",
-    "TODAY_HOURLY": "Today, hour by hour",
+    "TODAY_HOURLY": "Today's hourly forecast",
     "NO_HOURS_LEFT": "The day is almost over. Check tomorrow's forecast below.",
     "WEEK": "7-day forecast",
     "NOT_FOUND": "We couldn't find that resort.",
@@ -67,7 +67,7 @@
     "NO_INTERNET": "No internet connection. Check your connection and try again.",
     "BAD_KEY": "The API key is invalid or not active yet.",
     "UNKNOWN": "Something went wrong. Please try again in a bit.",
-    "NO_DATA": "Nothing to show here. Taking you back...",
+    "NO_DATA": "No data. Taking you back to the home page…",
     "PLACE_NOT_FOUND": "Place not found"
   },
   "UNITS": {
