@@ -11,7 +11,7 @@
 
 /* სათაური კურორტის ტიპის ფერით */
 .resort-header {
-  padding: 26px;
+  padding: 20px;
   border-radius: var(--radius);
   box-shadow: var(--card-shadow);
   overflow-wrap: anywhere;
@@ -31,7 +31,7 @@
 }
 
 .resort-header h1 {
-  font-size: 2.2rem;
+  font-size: clamp(1.6rem, 1.1rem + 2vw, 2.2rem);
   font-weight: 700;
   line-height: 1.25;
   margin: 4px 0 10px;
@@ -106,6 +106,9 @@
   display: flex;
   gap: 10px;
   overflow-x: auto;
+  overscroll-behavior-x: contain; /* რიგის სქროლი მთელ გვერდს არ ამოძრავებს */
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
   padding-bottom: 8px;
   margin-bottom: 28px;
 }
@@ -116,6 +119,7 @@
   flex-direction: column;
   align-items: center;
   padding: 12px 6px;
+  scroll-snap-align: start;
 }
 
 .hour-card img {
@@ -136,9 +140,10 @@
   padding: 6px 20px;
 }
 
+/* ტელეფონზე: დღე | აიქონი | ტემპერატურა (აღწერა დამალულია, აიქონი საკმარისია) */
 .day-row {
   display: grid;
-  grid-template-columns: 2fr 2fr 1fr;
+  grid-template-columns: 1fr auto auto;
   align-items: center;
   gap: 10px;
   padding: 6px 0;
@@ -151,6 +156,7 @@
 
 .day-name {
   font-weight: 600;
+  font-size: 0.9rem;
 }
 
 .day-weather {
@@ -165,6 +171,7 @@
 }
 
 .day-desc {
+  display: none;
   font-size: 0.9rem;
   overflow-wrap: anywhere;
 }
@@ -187,25 +194,20 @@
   padding: 8px;
 }
 
-@media (max-width: 500px) {
+@media (min-width: 768px) {
   .resort-header {
-    padding: 20px;
+    padding: 26px;
   }
 
-  .resort-header h1 {
-    font-size: 1.6rem;
-  }
-
-  /* ტელეფონზე აღწერას ვმალავთ, აიქონი საკმარისია */
   .day-row {
-    grid-template-columns: 1fr auto auto;
+    grid-template-columns: 2fr 2fr 1fr;
   }
 
   .day-desc {
-    display: none;
+    display: inline;
   }
 
   .day-name {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 }

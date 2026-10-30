@@ -43,12 +43,17 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* ვიწრო ეკრანზე ქვედა ხაზს Leaflet-ის attribution იკავებს, ამიტომ ცოტა ზემოთ */
+.legend {
+  bottom: 26px;
+}
+
 .legend-unit {
   font-weight: 700;
 }
 
 .legend-scale {
-  width: 180px;
+  width: 140px;
 }
 
 /* OpenWeatherMap-ის temp_new ფენის ფერები -30°-დან +30°-მდე */
@@ -66,13 +71,12 @@
   margin-top: 2px;
 }
 
-@media (max-width: 500px) {
-  /* ვიწრო ეკრანზე ქვედა ხაზს Leaflet-ის attribution იკავებს, ამიტომ ცოტა ზემოთ */
+@media (min-width: 768px) {
   .legend {
-    bottom: 26px;
+    bottom: 10px;
   }
 
   .legend-scale {
-    width: 140px;
+    width: 180px;
   }
 }

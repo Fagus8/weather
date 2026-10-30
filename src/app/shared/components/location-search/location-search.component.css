@@ -13,6 +13,11 @@
   border-radius: 14px;
   padding: 0 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: box-shadow var(--fast) ease;
+}
+
+.search-input:focus-within {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15), 0 0 0 3px rgba(79, 141, 245, 0.55);
 }
 
 .search-input input {
@@ -27,10 +32,25 @@
 }
 
 .clear-btn {
+  flex-shrink: 0;
+  width: var(--tap);
+  height: var(--tap);
+  margin-right: -8px;
   border: none;
+  border-radius: 50%;
   background: none;
   color: #94a3b8;
   cursor: pointer;
+  transition: color var(--fast) ease, background var(--fast) ease;
+}
+
+.clear-btn:hover {
+  color: var(--text-dark);
+  background: #f1f5f9;
+}
+
+.clear-btn:focus-visible {
+  box-shadow: 0 0 0 3px rgba(79, 141, 245, 0.55);
 }
 
 .small-spinner {
@@ -67,9 +87,11 @@
   justify-content: space-between;
   align-items: center;
   gap: 10px;
+  min-height: var(--tap);
   padding: 9px 12px;
   border-radius: 10px;
   cursor: pointer;
+  transition: background 0.15s ease;
 }
 
 .suggestions li.active {

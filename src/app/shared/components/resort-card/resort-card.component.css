@@ -7,14 +7,24 @@
   color: #ffffff;
   text-decoration: none;
   box-shadow: var(--card-shadow);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s ease;
   /* გრძელი სიტყვები ბარათიდან რომ არ გავიდეს */
   overflow-wrap: anywhere;
+  animation: fade-up 0.4s var(--ease) backwards;
 }
 
-.resort-card:hover {
+.resort-card:hover,
+.resort-card:focus-visible {
   transform: translateY(-4px);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.resort-card:focus-visible {
+  box-shadow: var(--card-shadow-hover), var(--focus-ring);
+}
+
+.resort-card:active {
+  transform: translateY(-1px) scale(0.99);
 }
 
 /* მთა: მწვანე → ლურჯი, ზღვა: ცისფერი → ფირუზისფერი */
@@ -103,4 +113,9 @@ h3 {
   font-size: 0.85rem;
   font-weight: 600;
   opacity: 0.9;
+  transition: transform var(--fast) ease;
+}
+
+.resort-card:hover .more {
+  transform: translateX(3px);
 }

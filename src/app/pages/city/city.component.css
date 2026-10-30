@@ -19,9 +19,14 @@
   color: var(--text);
   border: 1px solid var(--card-border);
   border-radius: 999px;
+  min-height: var(--tap);
   padding: 6px 16px;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background var(--fast) ease, transform var(--fast) ease;
+}
+
+.quick-cities button:active {
+  transform: scale(0.97);
 }
 
 .quick-cities button:hover,
@@ -53,20 +58,22 @@
   margin-bottom: 20px;
 }
 
-/* მიმდინარე ამინდი */
+/* მიმდინარე ამინდი (ტელეფონზე სვეტად, ცენტრში) */
 .current-card {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
   gap: 20px;
-  padding: 30px;
+  padding: 24px 16px;
+  text-align: center;
   overflow-wrap: anywhere;
 }
 
 .city-name {
-  font-size: 2.2rem;
+  font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.2rem);
   font-weight: 700;
+  line-height: 1.25;
 }
 
 .country,
@@ -84,11 +91,11 @@
 }
 
 .current-temp img {
-  width: 130px;
+  width: 100px;
 }
 
 .big-temp {
-  font-size: 4.5rem;
+  font-size: clamp(3.5rem, 2.6rem + 3vw, 4.5rem);
   font-weight: 700;
   line-height: 1;
 }
@@ -104,7 +111,7 @@
 /* დეტალების ბარათები */
 .details-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 14px;
   margin: 16px 0 32px;
 }
@@ -118,10 +125,17 @@
   overflow-wrap: anywhere;
 }
 
-.detail-card:hover,
-.day-card:hover {
-  transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.28);
+/* ტელეფონზე hover „ეწებება“ შეხების შემდეგ, ამიტომ მხოლოდ მაუსისთვის */
+@media (hover: hover) {
+  .detail-card:hover,
+  .day-card:hover {
+    transform: translateY(-4px);
+    background: var(--card-bg-hover);
+  }
+}
+
+.day-card:active {
+  background: var(--card-bg-hover);
 }
 
 .detail-icon {
@@ -147,7 +161,7 @@
 
 .days-row {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 14px;
   margin-bottom: 32px;
 }
@@ -182,33 +196,24 @@
   margin-bottom: 12px;
 }
 
-/* მობილური */
-@media (max-width: 768px) {
-  .details-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .days-row {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 500px) {
+/* პლანშეტი და ზემოთ */
+@media (min-width: 768px) {
   .current-card {
-    flex-direction: column;
-    text-align: center;
-    padding: 24px 16px;
-  }
-
-  .big-temp {
-    font-size: 3.5rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    padding: 30px;
   }
 
   .current-temp img {
-    width: 100px;
+    width: 130px;
+  }
+
+  .details-grid {
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .days-row {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 }

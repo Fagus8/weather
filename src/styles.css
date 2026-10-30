@@ -5,16 +5,42 @@
 @import 'leaflet/dist/leaflet.css';
 
 :root {
+  /* ფერები */
   --text: #ffffff;
-  --text-muted: rgba(255, 255, 255, 0.75);
+  --text-muted: rgba(255, 255, 255, 0.8);
+  --text-dark: #1e293b;
+  --text-dark-muted: #64748b;
+  --accent: #4f8df5;
   --card-bg: rgba(255, 255, 255, 0.18);
+  --card-bg-hover: rgba(255, 255, 255, 0.28);
   --card-border: rgba(255, 255, 255, 0.3);
   --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --card-shadow-hover: 0 14px 30px rgba(0, 0, 0, 0.25);
+  --focus-ring: 0 0 0 3px rgba(255, 255, 255, 0.85);
+
+  /* ზომები */
   --radius: 20px;
+  --radius-sm: 12px;
+  --tap: 44px; /* თითით დასაჭერი ელემენტის მინიმალური სიმაღლე */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+
+  /* ანიმაცია */
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --fast: 0.2s;
 }
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -23,15 +49,31 @@ body {
   color: var(--text);
   background: #4f8df5;
   line-height: 1.5;
+  /* ტელეფონზე გვერდი გვერდულად არ უნდა იძვრებოდეს */
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
 h1, h2, h3, p {
   margin: 0;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 button, input, select {
   font-family: inherit;
   font-size: 1rem;
+}
+
+/* კლავიატურით ნავიგაციისას ჩანს, რომელ ელემენტზე ვართ */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
 }
 
 /* ბარათები ყველა გვერდისთვის */
@@ -42,34 +84,58 @@ button, input, select {
   box-shadow: var(--card-shadow);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  transition: transform 0.25s ease, background 0.25s ease;
+  transition: transform 0.25s var(--ease), background 0.25s ease, box-shadow 0.25s ease;
+  animation: fade-up 0.4s var(--ease) backwards;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
 }
 
 .container {
   max-width: 960px;
   margin: 0 auto;
-  padding: 24px 16px 40px;
+  padding: var(--space-5) var(--space-4) 2.5rem;
 }
 
 .section-title {
-  font-size: 1.2rem;
+  font-size: clamp(1.1rem, 1rem + 0.5vw, 1.25rem);
   font-weight: 600;
-  margin-bottom: 4px;
+  margin-bottom: var(--space-1);
 }
 
 /* გამჭვირვალე ღილაკი (უკან, რეჟიმი და ა.შ.) */
 .glass-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--tap);
   background: rgba(255, 255, 255, 0.2);
   color: var(--text);
   border: 1px solid var(--card-border);
-  border-radius: 12px;
-  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-4);
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background var(--fast) ease, transform var(--fast) ease;
 }
 
 .glass-btn:hover {
   background: rgba(255, 255, 255, 0.35);
+}
+
+.glass-btn:active {
+  transform: scale(0.97);
+}
+
+/* ვინც სისტემაში ანიმაციები გამორთო, მას არ ვაჩვენებთ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* რუკის ფანჯარა (Leaflet მას Angular-ის გარეთ ქმნის, ამიტომ სტილი აქ, გლობალურადაა) */
@@ -113,4 +179,11 @@ button, input, select {
 
 @keyframes spin {
   to { transform: rotate(360deg); }
+}
+
+/* რუკის +/- ღილაკები ტელეფონზე თითისთვის საკმარისი ზომის */
+.leaflet-touch .leaflet-bar a {
+  width: var(--tap);
+  height: var(--tap);
+  line-height: var(--tap);
 }
